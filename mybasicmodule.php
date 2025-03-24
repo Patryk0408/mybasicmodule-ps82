@@ -25,6 +25,7 @@
 */
 
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
+use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 if (!defined('_PS_VERSION_'))
     exit;
@@ -177,19 +178,22 @@ class MyBasicModule extends Module implements WidgetInterface
 
     public function getContent()
     {
-        $output = "";
-        if (Tools::isSubmit('submit' . $this->name)) 
-        {
-            $courserating = Tools::getValue('courserating');
-            if($courserating && !empty($courserating) && Validate::isGenericName($courserating)) 
-            {
-                Configuration::updateValue('COURSE_RATING', Tools::getValue("courserating"));
-                $output .= $this->displayConfirmation($this->l('Form submited successfully'));
-            } else {
-                $output .= $this->displayError($this->l('Form has not been submited successfully'));
-            }
-        }
-        return $output . $this->displayForm();
+        // $output = "";
+        // if (Tools::isSubmit('submit' . $this->name)) 
+        // {
+        //     $courserating = Tools::getValue('courserating');
+        //     if($courserating && !empty($courserating) && Validate::isGenericName($courserating)) 
+        //     {
+        //         Configuration::updateValue('COURSE_RATING', Tools::getValue("courserating"));
+        //         $output .= $this->displayConfirmation($this->l('Form submited successfully'));
+        //     } else {
+        //         $output .= $this->displayError($this->l('Form has not been submited successfully'));
+        //     }
+        // }
+        // return $output . $this->displayForm();
+        Tools::redirectAdmin(
+            SymfonyContainer::getInstance()->get('router')->generate('blog_list')
+        );
     }
     
     public function displayForm()
