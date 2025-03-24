@@ -1,0 +1,33 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% block content %}
+	<div class="card">
+		<div class="card-header">
+			<h1>Lista</h1>
+		</div>
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Description</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for comment in data %}
+						<tr>
+							<th scope="row">{{ comment.id }}</th>
+							<td>{{ comment.name }}</td>
+							<td>{{ comment.description }}</td>
+							<td><button class="btn btn-outline-danger">Delete</button></td>
+							<td><a href="{{path("blog_update" , { id : comment.id })}}" type="button" class="btn btn-outline-primary">Update</a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

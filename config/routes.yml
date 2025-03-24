@@ -1,0 +1,11 @@
+blog:
+  path: /blog
+  controller: MyBasicModule\Controller\CommentController::indexAction
+
+blog_list:
+  path: /blog/list
+  controller: MyBasicModule\Controller\CommentController::listAction
+
+blog_update:
+  path: /blog/update/{id}
+  controller: MyBasicModule\Controller\CommentController::updateAction

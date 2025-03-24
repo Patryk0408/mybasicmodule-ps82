@@ -1,0 +1,19 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %} 
+{% form_theme form '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig' %}
+
+
+{% block content %}
+
+<div class="card">
+    <h1 class="card-header">Comment</h1>
+    <div class="card-body">
+        <p>{{test}}</p>
+
+
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        {{form_end(form)}}
+    </div>
+
+</div>
+{% endblock %}

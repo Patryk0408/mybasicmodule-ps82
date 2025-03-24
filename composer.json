@@ -1,0 +1,15 @@
+{
+    "name": "src/commentcontroller",
+    "description": "Comment Controller",
+    "autoload": {
+        "psr-4": {
+            "MyBasicModule\\Controller\\": "src/controller/",
+            "MyBasicModule\\Form\\": "src/Form/",
+            "MyBasicModule\\Entity\\": "src/Entity/"
+        }
+    },
+    "config": {
+        "prepend-autoloader": false
+    },
+    "type": "prestashop-module"
+}
