@@ -1,33 +1,52 @@
 {% extends '@PrestaShop/Admin/layout.html.twig' %}
 
 {% block content %}
-	<div class="card">
-		<div class="card-header">
-			<h1>Lista</h1>
-		</div>
-		<div class="card-body">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Name</th>
-						<th>Description</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for comment in data %}
-						<tr>
-							<th scope="row">{{ comment.id }}</th>
-							<td>{{ comment.name }}</td>
-							<td>{{ comment.description }}</td>
-							<td><button class="btn btn-outline-danger">Delete</button></td>
-							<td><a href="{{path("blog_update" , { id : comment.id })}}" type="button" class="btn btn-outline-primary">Update</a></td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+	<div class="row justify-content-center">
+		<div class="col-xl-10">
+			<div class="card">
+				<div class="card-header d-flex justify-content-between align-items-center">
+					<h1 class="m-0">Lista</h1>
+					<a href="{{path("blog_create")}}" class="d-flex">
+						<i class="material-icons">add_circle</i>
+					</a>
+				</div>
+				<div class="card-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Name</th>
+								<th>Description</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for comment in data %}
+								<tr class="border-bottom">
+									<th scope="row" class="border-0">{{ comment.id }}</th>
+									<td class="border-0">{{ comment.name }}</td>
+									<td class="border-0">{{ comment.description }}</td>
+									<td class="text-right d-flex justify-content-end align-items-center border-0">
+										<a href="{{path("blog_update" , { id : comment.id })}}" type="button" class="btn"><i class="material-icons">edit</i></a>
+										<div class="d-inline-block float-right">
+											<div class="btn-group-action text-right">
+												<div class="btn-group">
+													<a class="btn btn-link dropdown-toggle dropdown-toggle-dots dropdown-toggle-split p-0 no-rotate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="btn tooltip-link js-form-submit-btn dropdown-item" type="button" href="{{path("blog_delete" , { id : comment.id })}}">
+															{{ 'Delete'|trans({}, 'Admin.Actions') }}
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 {% endblock %}

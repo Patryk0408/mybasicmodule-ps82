@@ -1,5 +1,5 @@
-blog:
-  path: /blog
+blog_create:
+  path: /blog/create
   controller: MyBasicModule\Controller\CommentController::indexAction
 
 blog_list:
@@ -9,3 +9,7 @@ blog_list:
 blog_update:
   path: /blog/update/{id}
   controller: MyBasicModule\Controller\CommentController::updateAction
+
+blog_delete:
+  path: /blog/delete/{id}
+  controller: MyBasicModule\Controller\CommentController::deleteAction

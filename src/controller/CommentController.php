@@ -2,7 +2,6 @@
 
 namespace MyBasicModule\Controller;
 
-use Dom\Comment;
 use MyBasicModule\Form\CommentType;
 use MyBasicModule\Entity\CommentTest;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
@@ -11,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CommentController extends FrameworkBundleAdminController
 {
-    public function indexAction(Request $request)
+    public function indexAction(Request $request): Response
     {
         $form = $this->createForm(CommentType::class);
 
@@ -40,7 +39,7 @@ class CommentController extends FrameworkBundleAdminController
         );
     }
 
-    public function listAction()
+    public function listAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $data = $em->getRepository(CommentTest::class)->findAll();
@@ -53,7 +52,8 @@ class CommentController extends FrameworkBundleAdminController
         );
     }
 
-    public function updateAction(int $id, Request $request) {
+    public function updateAction(int $id, Request $request): Response 
+    {
         $em = $this->getDoctrine()->getManager();
         $data = $em->getRepository(CommentTest::class)->find($id);
         $form = $this->createForm(CommentType::class, $data);
@@ -72,5 +72,22 @@ class CommentController extends FrameworkBundleAdminController
                 'form' => $form->createView()
             ]
         );
+    }
+
+    public function deleteAction(int $id): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $data = $em->getRepository(CommentTest::class)->find($id);
+
+        if (!$data) {
+            $this->addFlash('error', 'Entry not found');
+            return $this->redirectToRoute('blog_list'); 
+        }
+        $em->remove($data);
+        $em->flush();
+
+        $this->addFlash('success', 'Entry deleted successfully');
+
+        return $this->redirectToRoute('blog_list'); 
     }
 }

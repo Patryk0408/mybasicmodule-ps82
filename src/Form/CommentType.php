@@ -27,11 +27,12 @@ class CommentType extends AbstractType
                 'attr' => [
                     "placeholder" => "The price"
                 ]
-            ])
-            ->add('save', SubmitType::class, [
-                'attr' => [
-                    "class" => "test"
-                ]
             ]);
+            // ->add('save', SubmitType::class, [
+            //     'attr' => [
+            //         "class" => "btn-primary",
+            //         'label' => 'Save'
+            //     ]
+            // ]);
     }
 }
